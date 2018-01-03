@@ -24,7 +24,7 @@ public class FloatingActionButtonActivity extends BaseAdsActivity{
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_fab);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,7 +37,7 @@ public class FloatingActionButtonActivity extends BaseAdsActivity{
             }
         });
 
-        btTutorial = (Button) findViewById(R.id.bt_tutorial);
+        btTutorial = findViewById(R.id.bt_tutorial);
         btTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +50,7 @@ public class FloatingActionButtonActivity extends BaseAdsActivity{
     }
 
     private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);

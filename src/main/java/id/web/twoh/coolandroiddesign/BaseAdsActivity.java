@@ -23,17 +23,18 @@ public class BaseAdsActivity extends AppCompatActivity {
     private InterstitialAd interstitialAd;
     private static final String TAG = BaseAdsActivity.class.getSimpleName();
     private int counter = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("22FFB74E3E00DEC909938864EE0B401E").build();
         mAdView.loadAd(adRequest);
 
-        System.out.println("Outer class "+this.getClass().getSimpleName());
+        System.out.println("Outer class " + this.getClass().getSimpleName());
 
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, this.getClass().getSimpleName());
@@ -44,7 +45,7 @@ public class BaseAdsActivity extends AppCompatActivity {
 
     }
 
-    protected void initInterstitial(){
+    protected void initInterstitial() {
         interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 
@@ -58,7 +59,7 @@ public class BaseAdsActivity extends AppCompatActivity {
         loadInterstitial();
     }
 
-    protected void readTheTutorial(String url){
+    protected void readTheTutorial(String url) {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.putExtra(Intent.EXTRA_REFERRER,
@@ -74,12 +75,11 @@ public class BaseAdsActivity extends AppCompatActivity {
         }
     }
 
-    protected void decideToDisplay(){
+    protected void decideToDisplay() {
         counter++;
-        Log.v(TAG, "ads matdes counter display "+counter);
-        if(counter==5)
-        {
-            Log.v(TAG, "ads matdes counter display displayed "+counter);
+        Log.v(TAG, "ads matdes counter display " + counter);
+        if (counter == 5) {
+            Log.v(TAG, "ads matdes counter display displayed " + counter);
             displayInterstitial();
             counter = 0;
         }
@@ -90,6 +90,28 @@ public class BaseAdsActivity extends AppCompatActivity {
         if (!interstitialAd.isLoading() && !interstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder().build();
             interstitialAd.loadAd(adRequest);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (interstitialAd.isLoaded()) {
+            if(counter>=2) {
+                interstitialAd.show();
+                interstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdClosed() {
+                        super.onAdClosed();
+                        finish();
+                    }
+                });
+                counter=0;
+            }else{
+                counter++;
+                super.onBackPressed();
+            }
+        } else {
+            super.onBackPressed();
         }
     }
 }

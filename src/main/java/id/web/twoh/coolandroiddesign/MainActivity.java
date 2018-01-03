@@ -29,13 +29,14 @@ public class MainActivity extends BaseAdsActivity {
     private Button btRipple;
     private Button btRatingBar;
     private Button btNavBottom;
+    private Button btBottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
         setupToolbar();
-        btFab = (Button) findViewById(R.id.bt_fab);
+        btFab = findViewById(R.id.bt_fab);
         btFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +45,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btTil = (Button) findViewById(R.id.bt_til);
+        btTil = findViewById(R.id.bt_til);
         btTil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +54,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btNav = (Button) findViewById(R.id.bt_nav_view);
+        btNav = findViewById(R.id.bt_nav_view);
         btNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +63,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btAppBar = (Button) findViewById(R.id.bt_appcontainer);
+        btAppBar = findViewById(R.id.bt_appcontainer);
         btAppBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +72,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btTab = (Button) findViewById(R.id.bt_tab);
+        btTab = findViewById(R.id.bt_tab);
         btTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +81,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        collapseTool = (Button) findViewById(R.id.bt_coll);
+        collapseTool = findViewById(R.id.bt_coll);
         collapseTool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +90,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        refreshViewBut = (Button) findViewById(R.id.bt_refreshview);
+        refreshViewBut = findViewById(R.id.bt_refreshview);
         refreshViewBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +99,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btRecyclerView = (Button) findViewById(R.id.bt_recview);
+        btRecyclerView = findViewById(R.id.bt_recview);
         btRecyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +108,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btPallete = (Button) findViewById(R.id.bt_pallete);
+        btPallete = findViewById(R.id.bt_pallete);
         btPallete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +117,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btSwitch = (Button) findViewById(R.id.bt_switch);
+        btSwitch = findViewById(R.id.bt_switch);
         btSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +126,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btRipple = (Button) findViewById(R.id.bt_ripple);
+        btRipple = findViewById(R.id.bt_ripple);
         btRipple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +135,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btRatingBar = (Button) findViewById(R.id.bt_ratingbar);
+        btRatingBar = findViewById(R.id.bt_ratingbar);
         btRatingBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,7 +144,7 @@ public class MainActivity extends BaseAdsActivity {
             }
         });
 
-        btNavBottom = (Button) findViewById(R.id.bt_bottomnav);
+        btNavBottom = findViewById(R.id.bt_bottomnav);
         btNavBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,10 +152,19 @@ public class MainActivity extends BaseAdsActivity {
                 startActivity(new Intent(MainActivity.this, BottomNavigationViewActivity.class));
             }
         });
+
+        btBottomSheet = findViewById(R.id.bt_bottomsheet);
+        btBottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decideToDisplay();
+                startActivity(new Intent(MainActivity.this, BottomSheetActivity.class));
+            }
+        });
     }
 
     private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.mipmap.ic_launcher);
@@ -185,8 +195,6 @@ public class MainActivity extends BaseAdsActivity {
     }
 
     public void open(){
-
-
         SpannableString str = new SpannableString("Copyright © : TWOh's Engineering " +
                 "\nTutorial lengkap di http://www.twoh.co/mudengdroid-belajar-android-bersama-twohs-engineering/android-design-tutorial/");
         LinkifyCompat.addLinks(str, Linkify.WEB_URLS);
@@ -202,5 +210,10 @@ public class MainActivity extends BaseAdsActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

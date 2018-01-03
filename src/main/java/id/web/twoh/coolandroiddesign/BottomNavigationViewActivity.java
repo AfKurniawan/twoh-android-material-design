@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +46,7 @@ import id.web.twoh.coolandroiddesign.utils.Const;
             }
         });
 
-        btTutorial = (Button) findViewById(R.id.bt_tutorial);
+        btTutorial = findViewById(R.id.bt_tutorial);
         btTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +59,11 @@ import id.web.twoh.coolandroiddesign.utils.Const;
     }
 
     private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("Floating Action Button Example");
+        ab.setTitle("Bottom Navigation View Example");
     }
 
 

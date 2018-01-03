@@ -25,9 +25,9 @@ public class NavigationViewActivity extends BaseAdsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_nav_view);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         setupToolbar();
-        navView = (NavigationView) findViewById(R.id.navigation);
+        navView = findViewById(R.id.navigation);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -59,7 +59,7 @@ public class NavigationViewActivity extends BaseAdsActivity {
         });
         super.onCreate(savedInstanceState);
 
-        Button btTutorial = (Button) findViewById(R.id.bt_tutorial);
+        Button btTutorial = findViewById(R.id.bt_tutorial);
         btTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class NavigationViewActivity extends BaseAdsActivity {
 
     private void setupToolbar()
     {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         // set toolbar ke dalam support action bar
         setSupportActionBar(toolbar);

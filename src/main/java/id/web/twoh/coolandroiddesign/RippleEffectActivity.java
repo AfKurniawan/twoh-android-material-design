@@ -22,7 +22,7 @@ public class RippleEffectActivity extends BaseAdsActivity{
         setContentView(R.layout.activity_ripple_effect);
         setToolbar();
         super.onCreate(savedInstanceState);
-        Button btTutorial = (Button) findViewById(R.id.bt_tutorial);
+        Button btTutorial = findViewById(R.id.bt_tutorial);
         btTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class RippleEffectActivity extends BaseAdsActivity{
     }
 
     private void setToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
